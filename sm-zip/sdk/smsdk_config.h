@@ -30,8 +30,8 @@
 #define SMEXT_CONF_NAME			"Zip"
 #define SMEXT_CONF_DESCRIPTION	"Zip file compression extension"
 #define SMEXT_CONF_VERSION	    SMZIP_VERSION	
-#define SMEXT_CONF_AUTHOR		"Peter \"astroman\" Rowlands"
-#define SMEXT_CONF_URL			"https://github.com/pmrowla/sm-zip"
+#define SMEXT_CONF_AUTHOR		"Main: Peter \"astroman\" Rowlands - Version by: Versatile_BFG"
+#define SMEXT_CONF_URL			"https://github.com/Versatile-BFG/sm-zip"
 #define SMEXT_CONF_LOGTAG		"ZIP"
 #define SMEXT_CONF_LICENSE		"GPL"
 #define SMEXT_CONF_DATESTRING	__DATE__
