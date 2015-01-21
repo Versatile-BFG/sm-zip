@@ -1,7 +1,44 @@
 [submodule "zlib"]
 	path = zlib
-    url = https://github.com/madler/zlib
-    ignore = dirty
-[submodule "sourcemod-1.5"]
-	path = sourcemod-1.5
-	url = https://github.com/pmrowla/sourcemod-1.5.git
+	url = https://github.com/madler/zlib
+	ignore = dirty
+[submodule "SMSDK"]
+	path = SMSDK
+	url = https://github.com/alliedmodders/sourcemod.git
+	branch = 1.6-dev
+	update = rebase
+[submodule "hl2sdk-sdk2013"]
+	path = hl2sdk/hl2sdk-sdk2013
+	url = https://github.com/alliedmodders/hl2sdk.git
+	branch = sdk2013
+	update = rebase
+[submodule "hl2sdk-csgo"]
+	path = hl2sdk/hl2sdk-csgo
+	url = https://github.com/alliedmodders/hl2sdk.git
+	branch = csgo
+	update = rebase
+[submodule "hl2sdk-episode1"]
+	path = hl2sdk/hl2sdk-episode1
+	url = https://github.com/alliedmodders/hl2sdk.git
+	branch = episode1
+	update = rebase
+[submodule "hl2sdk-l4d"]
+	path = hl2sdk/hl2sdk-l4d
+	url = https://github.com/alliedmodders/hl2sdk.git
+	branch = l4d
+	update = rebase
+[submodule "hl2sdk-l4d2"]
+	path = hl2sdk/hl2sdk-l4d2
+	url = https://github.com/alliedmodders/hl2sdk.git
+	branch = l4d2
+	update = rebase
+[submodule "hl2sdk-orangebox"]
+	path = hl2sdk/hl2sdk-orangebox
+	url = https://github.com/alliedmodders/hl2sdk.git
+	branch = orangebox
+	update = rebase
+[submodule "hl2sdk-css"]
+	path = hl2sdk/hl2sdk-css
+	url = https://github.com/alliedmodders/hl2sdk.git
+	branch = css
+	update = rebase
