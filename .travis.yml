@@ -1,5 +1,4 @@
 # Travis-CI config
-
 language: cpp
 compiler:
   - gcc
