@@ -1,4 +1,4 @@
-# Travis-CI config for GoonPUG
+# Travis-CI config
 
 language: cpp
 compiler:
@@ -11,15 +11,6 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq gcc-multilib g++-multilib
 
-branches:
-  only:
-    - master
-
 # Use IRC notifications instead of email
 notifications:
   email: false
-  irc:
-    channels:
-      - "irc.synirc.net#goonpug"
-    on_success: always
-    on_failure: always
