@@ -1,21 +1,20 @@
 # Travis-CI config
+
 language: cpp
-
 compiler:
-- gcc
-- clang
+  - gcc
+  - clang
 
--before_install:
-- sudo apt-get update -qq
-- sudo apt-get install -qq gcc-multilib g++-multilib libc6-dev-i386 lib32stdc++6 lib32z1-dev
+script: make -C sm-zip
 
-script:
-- cd sm-zip
-- make
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq gcc-multilib g++-multilib libc6-dev-i386 lib32stdc++6 lib32z1-dev
 
 branches:
-only:
-- master
+  only:
+    - master
 
+# Use IRC notifications instead of email
 notifications:
-email: false
+  email: false
