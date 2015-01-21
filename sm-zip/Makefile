@@ -23,14 +23,14 @@ PROJECT = smzip
 C_OPT_FLAGS = -DNDEBUG -O3 -funroll-loops -pipe -fno-strict-aliasing
 C_DEBUG_FLAGS = -D_DEBUG -DDEBUG -g -ggdb3
 C_GCC4_FLAGS = -fvisibility=hidden
-CXX_GCC4_FLAGS = -fvisibility-inlines-hidden
+CPP_GCC4_FLAGS = -fvisibility-inlines-hidden
 
 ifndef $(CC)
 CC = clang
 endif
 
-ifndef $(CXX)
-CXX = clang++
+ifndef $(CPP)
+CPP = gcc
 endif
 
 INCLUDE += -I. -I.. -Isdk -I$(SMSDK)/public -I$(SMSDK)/public/sourcepawn -I$(ZLIB) -I$(MINIZIP)
@@ -40,7 +40,7 @@ LINK += -m32 -lm -ldl -L$(ZLIB) $(ZLIB)/libz.a
 CFLAGS += -DPOSIX -Dstricmp=strcasecmp -D_stricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp \
 	-D_snprintf=snprintf -D_vsnprintf=vsnprintf -D_alloca=alloca -Dstrcmpi=strcasecmp -DCOMPILER_GCC -Wall -Werror \
 	-Wno-overloaded-virtual -Wno-switch -Wno-unused -msse -DSOURCEMOD_BUILD -DHAVE_STDINT_H -m32
-CXXFLAGS += -Wno-non-virtual-dtor -fno-exceptions -fno-rtti
+CPPFLAGS += -Wno-non-virtual-dtor -fno-exceptions -fno-rtti
 
 ################################################
 ### DO NOT EDIT BELOW HERE FOR MOST PROJECTS ###
@@ -72,14 +72,14 @@ else
 	ZLIB_ARCH = -m32
 endif
 
-IS_CLANG := $(shell $(CXX) --version | head -1 | grep clang > /dev/null && echo "1" || echo "0")
+IS_CLANG := $(shell $(CPP) --version | head -1 | grep clang > /dev/null && echo "1" || echo "0")
 
 ifeq "$(IS_CLANG)" "1"
-	CXX_MAJOR := $(shell $(CXX) --version | grep clang | sed "s/.*version \([0-9]\)*\.[0-9]*.*/\1/")
-	CXX_MINOR := $(shell $(CXX) --version | grep clang | sed "s/.*version [0-9]*\.\([0-9]\)*.*/\1/")
+	CPP_MAJOR := $(shell $(CPP) --version | grep clang | sed "s/.*version \([0-9]\)*\.[0-9]*.*/\1/")
+	CPP_MINOR := $(shell $(CPP) --version | grep clang | sed "s/.*version [0-9]*\.\([0-9]\)*.*/\1/")
 else
-	CXX_MAJOR := $(shell $(CXX) -dumpversion >&1 | cut -b1)
-	CXX_MINOR := $(shell $(CXX) -dumpversion >&1 | cut -b3)
+	CPP_MAJOR := $(shell $(CPP) -dumpversion >&1 | cut -b1)
+	CPP_MINOR := $(shell $(CPP) -dumpversion >&1 | cut -b3)
 endif
 
 # If not clang
@@ -88,13 +88,13 @@ ifeq "$(IS_CLANG)" "0"
 endif
 
 # Clang || GCC >= 4
-ifeq "$(shell expr $(IS_CLANG) \| $(CXX_MAJOR) \>= 4)" "1"
+ifeq "$(shell expr $(IS_CLANG) \| $(CPP_MAJOR) \>= 4)" "1"
 	CFLAGS += $(C_GCC4_FLAGS)
-	CXXFLAGS += $(CXX_GCC4_FLAGS)
+	CPPFLAGS += $(CPP_GCC4_FLAGS)
 endif
 
 # Clang >= 3 || GCC >= 4.7
-ifeq "$(shell expr $(IS_CLANG) \& $(CXX_MAJOR) \>= 3 \| $(CXX_MAJOR) \>= 4 \& $(CXX_MINOR) \>= 7)" "1"
+ifeq "$(shell expr $(IS_CLANG) \& $(CPP_MAJOR) \>= 3 \| $(CPP_MAJOR) \>= 4 \& $(CPP_MINOR) \>= 7)" "1"
 	CFLAGS += -Wno-delete-non-virtual-dtor
 endif
 
@@ -115,7 +115,7 @@ MINIZIP_OBJ := $(MINIZIP_SRC:%.c=$(BIN_DIR)/%.o)
 MAKEFILE_NAME := $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 
 $(BIN_DIR)/%.o: %.cpp $(VERSION_HEADER)
-	$(CXX) $(INCLUDE) $(CFLAGS) $(CXXFLAGS) -o $@ -c $<
+	$(CPP) $(INCLUDE) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 $(BIN_DIR)/%.o: $(addprefix $(MINIZIP)/, %.c)
 	$(CC) $(INCLUDE) $(CFLAGS) -o $@ -c $<
@@ -125,8 +125,8 @@ all: check extension
 check: gitversion
 	mkdir -p $(BIN_DIR)/sdk
 
-extension: check $(ZLIB)/libz.a $(OBJ) $(MINIZIP_OBJ)
-	$(CXX) $(INCLUDE) $(OBJ) $(MINIZIP_OBJ) $(LINK) -o $(BIN_DIR)/$(BINARY)
+extension: check $(ZLIB)/libz.a
+	$(CPP) $(INCLUDE) $(OBJ) $(MINIZIP_OBJ) $(LINK) -o $(BIN_DIR)/$(BINARY)
 
 debug:
 	$(MAKE) -f $(MAKEFILE_NAME) all DEBUG=true
