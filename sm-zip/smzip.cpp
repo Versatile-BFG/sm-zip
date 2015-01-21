@@ -184,7 +184,7 @@ static cell_t Zip_AddFile(IPluginContext *pCtx, const cell_t *params)
 
         } while (ZIP_OK == zipErr && bytesRead > 0);
 
-        if (ZIP_OK != zipErr)
+        if (ZIP_OK != zipErr && -1 != zipErr)
         {
             if (ZIP_ERRNO == zipErr)
                 g_pSM->LogError(myself, "Failed to write to zip archive (%s)", strerror(errno));
