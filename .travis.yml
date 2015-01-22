@@ -9,7 +9,7 @@ script: make -C sm-zip
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq g++ g++-4.9-multilib gcc-4.9-multilib gcc-multilib g++-multilib libc6-dev-i386 lib32stdc++6 lib32z1-dev
+  - sudo apt-get install -qq g++ gcc-multilib g++-multilib libc6-dev-i386 lib32stdc++6 lib32z1-dev
 
 branches:
   only:
