@@ -3,8 +3,14 @@ sm-zip
 
 Sourcemod extension for writing zip archives using MiniZip and zlib.
 
-[![Build Status](https://travis-ci.org/pmrowla/sm-zip.png?branch=master)](https://travis-ci.org/pmrowla/sm-zip)
+Install
+-------
+--Windows
+	zlib1.dll is put into gameDirectory/bin(where engine.dll is)
+	smzip.ext.dll is placed in the addons/sourcemod/extensions folder
 
+--Linux
+	smzip.ext.so is placed in the addons/sourcemod/extensions folder
 
 Usage
 -----
