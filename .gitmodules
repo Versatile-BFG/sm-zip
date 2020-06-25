@@ -2,10 +2,10 @@
 	path = zlib
 	url = https://github.com/madler/zlib
 	ignore = dirty
-[submodule "sourcemod-1.5"]
-	path = sourcemod-1.5
+[submodule "sourcemod-1.10"]
+	path = sourcemod-1.10
 	url = https://github.com/alliedmodders/sourcemod.git
-	branch = 1.5-dev
+	branch = 1.10-dev
 	update = rebase
 [submodule "hl2sdk-sdk2013"]
 	path = hl2sdk/hl2sdk-sdk2013
