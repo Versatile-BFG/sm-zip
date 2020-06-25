@@ -2,11 +2,6 @@
 	path = zlib
 	url = https://github.com/madler/zlib
 	ignore = dirty
-[submodule "sourcemod-1.10"]
-	path = sourcemod-1.10
-	url = https://github.com/alliedmodders/sourcemod.git
-	branch = 1.10-dev
-	update = rebase
 [submodule "hl2sdk-sdk2013"]
 	path = hl2sdk/hl2sdk-sdk2013
 	url = https://github.com/alliedmodders/hl2sdk.git
@@ -42,3 +37,7 @@
 	url = https://github.com/alliedmodders/hl2sdk.git
 	branch = css
 	update = rebase
+[submodule "sourcemod"]
+	path = sourcemod
+	url = https://github.com/alliedmodders/sourcemod.git
+	branch = 1.10-dev
